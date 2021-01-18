@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <CssBaseline />
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <LitteraProvider initialLocale="en_US" locales={LOCALES}>
           <Router>
             <Routes />

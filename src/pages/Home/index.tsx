@@ -5,6 +5,9 @@ import { useLittera } from "react-littera";
 import cx from "classnames";
 
 // Project scoped imports.
+import Header from 'components/common/Header'
+
+// Component scoped imports.
 import styles from "./styles";
 import translations from "./trans";
 
@@ -19,7 +22,7 @@ const Home = (props: ComponentProps) => {
     const classes = useStyles();
 
     return <Container maxWidth="sm" className={cx(classes.root, props.className)} style={props.style}>
-        <h4 className={classes.h4}>{translated.title}</h4>
+        <Header />
     </Container>
 }
 

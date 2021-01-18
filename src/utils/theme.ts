@@ -5,16 +5,28 @@ export const LIGHT_THEME = createMuiTheme({
     palette: {
         type: "light",
         primary: {
-            main: "#99CC66"
+            main: "#FFF",
+            contrastText: "#000"
+        },
+        background: {
+            default: "#000",
+            paper: "#121"
+        },
+        text: {
+            primary: "#FFF",
+            disabled: "#212121"
         }
-    }
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                html: {
+                    WebkitFontSmoothing: 'auto',
+                    backgroundColor: "#000"
+                },
+            },
+        },
+    },
 });
 
-export const DARK_THEME = createMuiTheme({
-    palette: {
-        type: "dark",
-        primary: {
-            main: "#99CC66"
-        }
-    }
-});
+export const DARK_THEME = LIGHT_THEME;
