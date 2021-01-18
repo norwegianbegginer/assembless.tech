@@ -3,7 +3,7 @@ import { createStyles, Theme } from "@material-ui/core/styles";
 
 export default ((theme: Theme) => createStyles({
     root: {
-        margin: "10rem 0"
+        margin: "5rem 0 10rem 0"
     },
     title: {
         fontFamily: "'PT Mono', monospace"

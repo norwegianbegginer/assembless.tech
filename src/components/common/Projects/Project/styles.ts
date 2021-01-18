@@ -6,6 +6,7 @@ export default ((theme: Theme) => createStyles({
         border: `1px solid ${theme.palette.background.paper}`,
         padding: "16px",
         margin: "10px 0",
+        marginRight: "15px",
         width: "45%",
         borderRadius: "6px"
     },

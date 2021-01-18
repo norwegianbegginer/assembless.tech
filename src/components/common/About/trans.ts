@@ -7,9 +7,9 @@ const translations = {
         pl_PL: "O nas"
     },
     description: {
-        en_US: "We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀",
-        de_DE: "We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀",
-        pl_PL: "We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀"
+        en_US: "Welcome to Assembless. We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀",
+        de_DE: "Welcome to Assembless. We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀",
+        pl_PL: "Welcome to Assembless. We're an open source group of passionate engineers.\nWe create cool and useful solutions that inspire and teach us a lot.\nOur projects are so called Spaces and we might be called Asstronauts 👨‍🚀"
     },
 }
 
