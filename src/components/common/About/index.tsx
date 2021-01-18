@@ -20,9 +20,17 @@ const About = (props: AboutProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    return <Box className={cx(classes.root, props.className)} style={props.style}>
-        <Typography className={classes.title} variant="h3" gutterBottom>{translated.title}</Typography>
-        <Typography className={classes.description}>{translated.description}</Typography>
+    return <Box display="flex" justifyContent="space-between" alignItems="center" className={cx(classes.root, props.className)} style={props.style}>
+        <Box style={{ width: "50%" }}>
+            <Typography className={classes.title} variant="h3" gutterBottom>{translated.title}</Typography>
+            <Typography className={classes.description}>{translated.description}</Typography>
+        </Box>
+
+        <Box style={{ width: "50%" }} display="flex" justifyContent="center" flexDirection="column" alignItems="center">
+            <h1 style={{ color: "#FFF", opacity: 1, fontSize: "54px", margin: 0, padding: 0 }}>Assembless</h1>
+            <h1 style={{ color: "#FFF", opacity: 0.55, fontSize: "54px", margin: 0, padding: 0 }}>/əˈsɛmblɛs/</h1>
+        </Box>
+
     </Box>
 }
 

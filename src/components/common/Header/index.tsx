@@ -36,7 +36,7 @@ const Header = (props: HeaderProps) => {
             <Box display="flex" justifyContent="flex-end" alignItems="center" className={cx(classes.side)}>
                 <Box width="500px" height="500px" maxWidth="100%" display="flex" alignItems="center" justifyContent="center" style={{ background: "url(https://unblast.com/wp-content/uploads/2018/10/Sky-Stars-Pattern-0.jpg)", borderRadius: "50px" }}>
                     <Box overflow="hidden" width="500px" height="500px" maxWidth="100%" display="flex" alignItems="center" justifyContent="center" style={{ borderRadius: "500px 50px 50px 50px" }}>
-                        <img alt="thumbnail" src={vid} style={{ width: "auto", height: "105%" }} />
+                        <img alt="thumbnail" src={vid} style={{ width: "auto", height: "103%" }} />
                     </Box>
                 </Box>
             </Box>
