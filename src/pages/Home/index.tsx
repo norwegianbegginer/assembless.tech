@@ -6,6 +6,8 @@ import cx from "classnames";
 
 // Project scoped imports.
 import Header from 'components/common/Header'
+import About from 'components/common/About'
+import Projects from 'components/common/Projects'
 
 // Component scoped imports.
 import styles from "./styles";
@@ -17,12 +19,14 @@ import translations from "./trans";
  * @version 1.0.0
  * @author Mike Eling <mike.eling97@gmail.com>
  */
-const Home = (props: ComponentProps) => {
+const Home = (props: HomeProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    return <Container maxWidth="sm" className={cx(classes.root, props.className)} style={props.style}>
+    return <Container className={cx(classes.root, props.className)} style={props.style}>
         <Header />
+        <About />
+        <Projects />
     </Container>
 }
 
@@ -30,7 +34,7 @@ const Home = (props: ComponentProps) => {
 const useStyles = makeStyles(styles);
 
 // Props the component accepts.
-type ComponentProps = {
+type HomeProps = {
     className?: string;
     style?: React.CSSProperties
 }

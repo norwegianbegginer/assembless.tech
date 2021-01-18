@@ -7,6 +7,9 @@ import { LOCALES } from "utils/language";
 import { LIGHT_THEME, DARK_THEME } from "utils/theme";
 import Routes from "./Routes";
 
+import Appbar from 'components/common/Appbar'
+import Footer from 'components/common/Footer'
+
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -22,7 +25,9 @@ function App() {
         <CssBaseline />
         <LitteraProvider initialLocale="en_US" locales={LOCALES}>
           <Router>
+            <Appbar />
             <Routes />
+            <Footer />
           </Router>
         </LitteraProvider>
       </ThemeProvider>

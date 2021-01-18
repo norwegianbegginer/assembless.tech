@@ -1,0 +1,19 @@
+import { createStyles, Theme } from "@material-ui/core/styles";
+// Here we define styles for the component.
+
+export default ((theme: Theme) => createStyles({
+    root: {
+        border: `1px solid ${theme.palette.background.paper}`,
+        padding: "16px",
+        margin: "10px 0",
+        width: "45%",
+        borderRadius: "6px"
+    },
+    title: {
+
+        fontFamily: "'PT Mono', monospace"
+    },
+    description: {
+        opacity: 0.45
+    }
+}));

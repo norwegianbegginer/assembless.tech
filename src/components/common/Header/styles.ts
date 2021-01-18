@@ -1,16 +1,23 @@
-import { createStyles } from "@material-ui/core/styles";
+import { createStyles, Theme } from "@material-ui/core/styles";
 // Here we define styles for the component.
 
-export default ((theme: any) => createStyles({
+export default ((theme: Theme) => createStyles({
     root: {
-        // Container styles...
     },
     title: {
-        // Head text styles...
-        color: theme.palette.primary
+        whiteSpace: "pre-line",
+        textTransform: "uppercase",
+        fontFamily: "'PT Mono', monospace"
+    },
+    slogan: {
+        marginTop: "1rem",
+        opacity: 0.45
     },
     side: {
         width: "50%",
-        height: "100vh"
+        height: "100vh",
+        [theme.breakpoints.down('sm')]: {
+            width: "80%"
+        }
     }
 }));

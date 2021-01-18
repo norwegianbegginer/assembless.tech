@@ -10,11 +10,11 @@ export const LIGHT_THEME = createMuiTheme({
         },
         background: {
             default: "#000",
-            paper: "#121"
+            paper: "#212121"
         },
         text: {
             primary: "#FFF",
-            disabled: "#212121"
+            disabled: "#21212"
         }
     },
     overrides: {
