@@ -30,7 +30,7 @@ const Header = (props: HeaderProps) => {
                 <br />
                 <br />
                 <br />
-                <Button variant="contained" size="large">{translated.findSpace}</Button>
+                <Button href="https://github.com/Assembless" variant="contained" size="large">{translated.findSpace}</Button>
             </Box>
         </Box>
         <Hidden smDown>
