@@ -14,5 +14,11 @@ export default ((theme: Theme) => createStyles({
     },
     brandName: {
         color: "#FFF", fontSize: "54px", margin: 0, padding: 0
+    },
+    side: {
+        width: "50%",
+        [theme.breakpoints.down("sm")]: {
+            width: "100%"
+        }
     }
 }));

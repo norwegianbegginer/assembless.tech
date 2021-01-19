@@ -20,7 +20,7 @@ const About = (props: AboutProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
 
-    return <Box display="flex" justifyContent="space-between" alignItems="center" className={cx(classes.root, props.className)} style={props.style}>
+    return <Box display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap" className={cx(classes.root, props.className)} style={props.style}>
         <Box style={{ width: "50%" }}>
             <Typography className={classes.title} variant="h3" gutterBottom>{translated.title}</Typography>
             <Typography className={classes.description}>{translated.description}</Typography>

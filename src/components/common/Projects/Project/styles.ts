@@ -8,7 +8,11 @@ export default ((theme: Theme) => createStyles({
         margin: "10px 0",
         marginRight: "15px",
         width: "45%",
-        borderRadius: "6px"
+        borderRadius: "6px",
+        minWidth: "200px",
+        [theme.breakpoints.down("sm")]: {
+            width: "100%"
+        }
     },
     title: {
 
