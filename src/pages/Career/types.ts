@@ -3,4 +3,5 @@ export interface ICareerRole {
     project: string;
     projectUrl: string;
     description: string;
+    icon: string;
 }

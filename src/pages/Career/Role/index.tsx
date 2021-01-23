@@ -41,11 +41,11 @@ const CareerRole = (props: CareerRoleProps) => {
         <Box className={cx(classes.root, props.className)} style={props.style} display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center">
                 <Avatar style={{ marginRight: "18px", backgroundColor: "#FFF" }} variant="circular">
-                    <Icon style={{ color: "#000" }}>code</Icon>
+                    <Icon style={{ color: "#000" }}>{props.role.icon}</Icon>
                 </Avatar>
 
                 <Box>
-                    <Typography variant="h5">{props.role.title}</Typography>
+                    <Typography variant="h5" style={{ fontFamily: "'PT Mono', monospace", }}>{props.role.title}</Typography>
                     <Typography style={{ cursor: "pointer", opacity: 0.65 }} onClick={handleNavigation(props.role.projectUrl)}>{props.role.project}</Typography>
                 </Box>
             </Box>

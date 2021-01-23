@@ -24,7 +24,7 @@ const Career = (props: CareerProps) => {
     return <Box className={cx(classes.root, props.className)} style={props.style}>
         <Container>
             <Box style={{ marginBottom: "24px" }}>
-                <Typography variant="h4">{translated.title}</Typography>
+                <Typography variant="h4" style={{ fontFamily: "'PT Mono', monospace", }}>{translated.title}</Typography>
                 <Typography style={{ opacity: 0.65 }}>{translated.description}</Typography>
             </Box>
 
