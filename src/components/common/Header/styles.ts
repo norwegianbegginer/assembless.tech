@@ -7,7 +7,10 @@ export default ((theme: Theme) => createStyles({
     title: {
         whiteSpace: "pre-line",
         textTransform: "uppercase",
-        fontFamily: "'PT Mono', monospace"
+        fontFamily: "'PT Mono', monospace",
+        [theme.breakpoints.down("md")]: {
+            fontSize: "50px"
+        }
     },
     slogan: {
         marginTop: "1rem",
