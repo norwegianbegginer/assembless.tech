@@ -10,7 +10,13 @@ export default ((theme: Theme) => createStyles({
         fontFamily: "'PT Mono', monospace",
         [theme.breakpoints.down("md")]: {
             fontSize: "50px"
-        }
+        },
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "44px"
+        },
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "38px"
+        },
     },
     slogan: {
         marginTop: "1rem",
