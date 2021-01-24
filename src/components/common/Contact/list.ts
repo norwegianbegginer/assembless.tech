@@ -50,6 +50,9 @@ const makeLink = (label: TMemberContactLabel, value: string) => {
         case "linkedin":
             return `https://www.linkedin.com/in/${value}/`
 
+        case "telegram":
+            return `https://t.me/${value}`
+
         default:
             return value;
     }
@@ -99,6 +102,11 @@ const contacts: TMemberContact[][] = [
             name: "GitHub",
             value: "xomod"
         },
+        {
+            label: "telegram",
+            name: "Telegram",
+            value: "damblo"
+        },
     ],
     [
         {
@@ -142,6 +150,7 @@ export const iconsMap: { [key: string]: string } = {
     twitter: "fab fa-twitter",
     linkedin: "fab fa-linkedin",
     facebook: "fab fa-facebook",
+    telegram: "fab fa-telegram",
     website: "fas fa-globe",
 }
 

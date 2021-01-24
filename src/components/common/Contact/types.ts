@@ -10,7 +10,7 @@ export interface IMember {
     contact: TMemberContact[];
 }
 
-export type TMemberContactLabel = "email" | "phone" | "github" | "twitter" | "website" | "facebook" | "linkedin";
+export type TMemberContactLabel = "email" | "phone" | "github" | "twitter" | "website" | "facebook" | "linkedin" | "telegram";
 
 export type TMemberContact = {
     label: TMemberContactLabel;
