@@ -1,8 +1,10 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles, Box, Typography } from "@material-ui/core";
+import { makeStyles, Box, Typography, Button } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import { useLittera } from "react-littera";
 import cx from "classnames";
+import { useHistory } from "react-router-dom";
 
 // Project scoped imports.
 
@@ -21,6 +23,11 @@ import translations from "./trans";
 const Contact = (props: ContactProps) => {
     const translated = useLittera(translations);
     const classes = useStyles();
+    const history = useHistory();
+
+    const handleNavigation = (path: string) => () => {
+        history.push(path)
+    }
 
     return <Box className={cx(classes.root, props.className)} style={props.style}>
         <Typography variant="h3" className={classes.title} gutterBottom>{translated.title}</Typography>
@@ -30,6 +37,19 @@ const Contact = (props: ContactProps) => {
                 memberList.map(member => <Member member={member} />)
             }
         </Box>
+
+        <Alert
+            variant="filled"
+            severity="info"
+            style={{ marginTop: "24px" }}
+            action={
+                <Button color="inherit" size="small" onClick={handleNavigation("/career/")}>
+                    {translated.seeCareer}
+                </Button>
+            }
+        >
+            {translated.weHire}
+        </Alert>
     </Box>
 }
 
