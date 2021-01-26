@@ -10,5 +10,21 @@ export default ((theme: Theme) => createStyles({
     },
     copyright: {
         fontFamily: "'PT Mono', monospace"
+    },
+    socialIcon: {
+        fontSize: "28px",
+        margin: `0 ${theme.spacing(3)}px`,
+        color: theme.palette.common.white,
+        opacity: 0.7,
+        transition: "all 155ms ease",
+
+        "&:hover": {
+            opacity: 1,
+        },
+        cursor: "pointer"
+    },
+    socialMediaContainer: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(1),
     }
 }));
