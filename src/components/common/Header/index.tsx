@@ -5,8 +5,6 @@ import { useLittera } from "react-littera";
 import cx from "classnames";
 
 // Project scoped imports.
-import logo from 'assets/logo.jpg'
-import vid from 'assets/thumb_vid_min.gif'
 
 // Component scoped imports.
 import styles from "./styles";
@@ -21,7 +19,7 @@ const Header = (props: HeaderProps) => {
     const reduceData = useMediaQuery("(prefers-reduced-data: reduce)");
     const translated = useLittera(translations);
     const classes = useStyles();
-
+    
     return <Box display="flex" justifyContent="space-between" alignItems="flex-start" className={cx(classes.root, props.className)} style={props.style}>
         <Box display="flex" justifyContent="flex-start" alignItems="center" className={cx(classes.side)}>
             <Box>
@@ -33,15 +31,24 @@ const Header = (props: HeaderProps) => {
                 <Button href="https://github.com/Assembless" variant="contained" size="large">{translated.findSpace}</Button>
             </Box>
         </Box>
+
+        { /* What a hell I've created..? */}
         <Hidden smDown>
             <Box display="flex" justifyContent="flex-end" alignItems="center" className={cx(classes.side)}>
-                <Box width="500px" height="500px" maxWidth="100%" display="flex" alignItems="center" justifyContent="center" style={{ background: "url(https://unblast.com/wp-content/uploads/2018/10/Sky-Stars-Pattern-0.jpg)", borderRadius: "50px" }}>
-                    <Box overflow="hidden" width="500px" height="500px" maxWidth="100%" display="flex" alignItems="center" justifyContent="center" style={{ borderRadius: "400px 50px 50px 50px" }}>
-                        {!reduceData && <img alt="thumbnail" src={vid} style={{ width: "auto", height: "105%" }} />}
-                        {!!reduceData && <img alt="thumbnail" src={logo} style={{ width: "auto", height: "105%" }} />}
+                <div>
+                    <Box width="550px" height="550px" display="flex" alignItems="center" justifyContent="center" className={classes.galaxy}>
                     </Box>
-                </Box>
-            </Box>
+                    <Box width="550px" height="550px" display="flex" alignItems="center" justifyContent="center" className={classes.galaxyFade}>
+                    </Box>
+                    <Box width="550px" height="550px" display="flex" alignItems="center" justifyContent="center" className={classes.orbit}>
+                    </Box>
+                    <Box width="500px" height="500px" display="flex" alignItems="center" justifyContent="center" className={classes.atmosphere}>
+                    </Box>
+                    <Box width="400px" height="400px" display="flex" alignItems="center" justifyContent="center" className={classes.planet}>
+                        <img src="https://media4.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif?cid=ecf05e476yvh801dnv123fvcatmqyc9iqp9mee4zcv5pwfsr&rid=giphy.gif" style={{ width: "400px", height: "400px" }} />
+                    </Box>
+                </div>
+            </Box> 
         </Hidden>
     </Box>
 }

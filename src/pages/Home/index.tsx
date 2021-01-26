@@ -8,6 +8,7 @@ import cx from "classnames";
 import Header from 'components/common/Header'
 import About from 'components/common/About'
 import Projects from 'components/common/Projects'
+import News from 'components/common/News'
 import Contact from 'components/common/Contact'
 
 // Component scoped imports.
@@ -28,6 +29,7 @@ const Home = (props: HomeProps) => {
         <Header />
         <About />
         <Projects />
+        {/* <News /> */}
         <Contact />
     </Container>
 }
