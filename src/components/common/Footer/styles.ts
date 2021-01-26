@@ -16,7 +16,7 @@ export default ((theme: Theme) => createStyles({
         margin: `0 ${theme.spacing(3)}px`,
         color: theme.palette.common.white,
         opacity: 0.7,
-        transition: "all 155ms ease",
+        transition: `all 155ms ${theme.transitions.easing.easeInOut}`,
 
         "&:hover": {
             opacity: 1,

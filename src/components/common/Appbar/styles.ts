@@ -12,7 +12,7 @@ const styles = ((theme: Theme) => createStyles({
         color: theme.palette.common.white,
         textDecoration: "none",
         opacity: 0.6,
-        transition: "all 155ms ease",
+        transition: `all 155ms ${theme.transitions.easing.easeInOut}`,
         textShadow: `0 0px 0px ${theme.palette.common.white}`,
 
         "&:hover": {

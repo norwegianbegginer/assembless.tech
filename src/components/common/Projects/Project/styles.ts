@@ -10,8 +10,12 @@ export default ((theme: Theme) => createStyles({
         width: "45%",
         borderRadius: theme.shape.borderRadius,
         minWidth: "200px",
+        transition: `all 255ms ${theme.transitions.easing.easeOut}`,
         [theme.breakpoints.down("sm")]: {
             width: "100%"
+        },
+        "&:hover": {
+            borderColor: theme.palette.common.white
         }
     },
     title: {

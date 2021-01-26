@@ -11,7 +11,7 @@ const styles = ((theme: Theme) => createStyles({
         width: "280px",
         marginRight: `${theme.spacing(3)}px`,
         marginTop: theme.spacing(2),
-        transition: "all 255ms ease-out",
+        transition: `all 255ms ${theme.transitions.easing.easeOut}`,
         [theme.breakpoints.down("sm")]: {
             width: "100%",
         },
@@ -34,7 +34,7 @@ const styles = ((theme: Theme) => createStyles({
     contactIcon: {
         opacity: 0.65,
         color: theme.palette.common.white,
-        transition: "all 155ms ease",
+        transition: `all 155ms ${theme.transitions.easing.easeInOut}`,
         fontSize: "18px",
         margin: "0 8px",
         cursor: "pointer",
