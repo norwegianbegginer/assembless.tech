@@ -26,6 +26,22 @@ export const LIGHT_THEME = createMuiTheme({
                 },
             },
         },
+        MuiInputLabel: {
+            root: {
+                color: "#a8a8a8",
+                "&$focused": {
+                    color: "#FFF",
+                }
+            },
+        },
+        MuiOutlinedInput: {
+            notchedOutline: {
+                borderColor: "#a8a8a8",
+            },
+            focused: {
+                borderColo: "#FFF"
+            }
+        },
     },
 });
 
