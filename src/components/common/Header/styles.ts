@@ -31,13 +31,21 @@ export default ((theme: Theme) => createStyles({
         }
     },
     atmosphere: {
-        borderRadius: "500px", backgroundColor: "rgba(255, 255, 255, .046)",
+        borderRadius: "500px",
+        backgroundColor: "rgba(255, 255, 255, .06)",
         position: "absolute",
         top: "50%",
         left: "50%",
-        transform: "translate(-50%, -50%) scale(0.84)",
-        animation: `$atmosphereBreathing 16000ms linear`,
+    },
+    atmosphereAnimation01: {
+        animation: `$atmosphereBreathing01 16000ms linear`,
         animationIterationCount: "infinite",
+        transform: "translate(-50%, -50%) scale(1)",
+    },
+    atmosphereAnimation02: {
+        animation: `$atmosphereBreathing02 12000ms linear`,
+        animationIterationCount: "infinite",
+        transform: "translate(-50%, -50%) scale(0.9)",
     },
     planet: {
         borderRadius: "400px", backgroundColor: "#212121", overflow: "hidden",
@@ -46,7 +54,6 @@ export default ((theme: Theme) => createStyles({
         left: "50%",
         transform: "translate(-50%, -50%)",
         boxShadow: "0 0 20px 10px rgb(0 0 0 / 15%)",
-
     },
     galaxy: {
         background: "url(https://unblast.com/wp-content/uploads/2018/10/Sky-Stars-Pattern-0.jpg)",
@@ -93,12 +100,23 @@ export default ((theme: Theme) => createStyles({
             transform: "translate(-50%, -50%) rotate(359deg)"
         }
     },
-    "@keyframes atmosphereBreathing": {
+    "@keyframes atmosphereBreathing01": {
+        "0%": {
+            transform: "translate(-50%, -50%) scale(0.88)"
+        },
+        "50%": {
+            transform: "translate(-50%, -50%) scale(1.02)"
+        },
+        "100%": {
+            transform: "translate(-50%, -50%) scale(0.88)"
+        },
+    },
+    "@keyframes atmosphereBreathing02": {
         "0%": {
             transform: "translate(-50%, -50%) scale(0.84)"
         },
         "50%": {
-            transform: "translate(-50%, -50%) scale(1.02)"
+            transform: "translate(-50%, -50%) scale(0.96)"
         },
         "100%": {
             transform: "translate(-50%, -50%) scale(0.84)"

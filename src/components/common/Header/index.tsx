@@ -42,7 +42,9 @@ const Header = (props: HeaderProps) => {
                     </Box>
                     <Box width="550px" height="550px" display="flex" alignItems="center" justifyContent="center" className={classes.orbit}>
                     </Box>
-                    <Box width="500px" height="500px" display="flex" alignItems="center" justifyContent="center" className={classes.atmosphere}>
+                    <Box width="500px" height="500px" display="flex" alignItems="center" justifyContent="center" className={cx(classes.atmosphere, classes.atmosphereAnimation01)}>
+                    </Box>
+                    <Box width="500px" height="500px" display="flex" alignItems="center" justifyContent="center" className={cx(classes.atmosphere, classes.atmosphereAnimation02)}>
                     </Box>
                     <Box width="400px" height="400px" display="flex" alignItems="center" justifyContent="center" className={classes.planet}>
                         <img src="https://media4.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif?cid=ecf05e476yvh801dnv123fvcatmqyc9iqp9mee4zcv5pwfsr&rid=giphy.gif" style={{ width: "400px", height: "400px" }} />
