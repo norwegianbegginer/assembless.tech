@@ -30,7 +30,7 @@ const Footer = (props: FooterProps) => {
             <Box display="flex" alignItems="center" justifyContent="center" className={classes.socialMediaContainer}>
                 <Icon onClick={handleNavigation("https://www.facebook.com/assembless.tech")} className={cx(classes.socialIcon, "fab fa-facebook")} />
                 <Icon onClick={handleNavigation("https://twitter.com/Assembless")} className={cx(classes.socialIcon, "fab fa-twitter")} />
-                <Icon onClick={handleNavigation("https://discord.gg/Y5mH5H86JZ")} className={cx(classes.socialIcon, "fab fa-discord")} />
+                {/* <Icon onClick={handleNavigation("https://discord.gg/")} className={cx(classes.socialIcon, "fab fa-discord")} /> */}
             </Box>
 
             <Box display="flex" justifyContent="space-between" alignItems="center">
