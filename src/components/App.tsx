@@ -9,6 +9,7 @@ import Routes from "./Routes";
 
 import Appbar from 'components/common/Appbar'
 import Footer from 'components/common/Footer'
+import About from "components/common/About";
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
