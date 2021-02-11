@@ -6,6 +6,7 @@ export interface ICareerRole {
     description: string;
     icon: string;
     requirements?: IRoleRequirements[];
+    questions?: string[];
 }
 
 export interface IRoleRequirements {
@@ -20,13 +21,15 @@ class CareerRole implements ICareerRole {
     public description: string;
     public icon: string;
     public requirements?: IRoleRequirements[];
+    public questions?: string[];
 
-    constructor(role: string, description: string, icon: string, requirements?: IRoleRequirements[], project?: IProject) {
+    constructor(role: string, description: string, icon: string, requirements?: IRoleRequirements[], project?: IProject, questions?: string[]) {
         this.role = role;
         this.project = project;
         this.description = description;
         this.icon = icon;
         this.requirements = requirements;
+        this.questions = questions;
     }
 }
 

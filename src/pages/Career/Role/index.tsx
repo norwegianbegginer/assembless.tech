@@ -1,6 +1,6 @@
 // Deps scoped imports.
 import React, { useState } from "react";
-import { makeStyles, Box, Typography, IconButton, Icon, Avatar, DialogContent, Dialog, DialogActions, Button, Theme } from "@material-ui/core";
+import { makeStyles, Box, Typography, IconButton, Icon, Avatar, DialogContent, Dialog, DialogActions, Button, Theme, TextField } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import { useLittera } from "react-littera";
 import cx from "classnames";
@@ -26,6 +26,13 @@ const CareerRole = (props: CareerRoleProps) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [openForm, setOpenForm] = useState(false);
+    const handleOpenForm = () => {
+        setOpenForm(true);
+        setOpen(false);
+    }
+    const handleCloseForm = () => setOpenForm(false);
 
     const handleNavigation = (path: string) => () => {
         window.open(path, "_blank");
@@ -68,8 +75,11 @@ const CareerRole = (props: CareerRoleProps) => {
                 <Typography style={{ opacity: '0.7', }}>{props.role.description}</Typography>
             </DialogContent>
             <DialogActions style={{ padding: '0', alignItems: 'flex-end', marginTop: '25px' }}>
-                <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" onClick={handleClose}>apply</Button>
+                <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" onClick={handleOpenForm}>apply</Button>
             </DialogActions>
+        </Dialog>
+        <Dialog open={openForm} onClose={handleCloseForm} PaperProps={{ style: { width: '70vw', padding: '50px' } }} maxWidth='xl' >
+            <RecrutingForm role={props.role.role} questions={props.role.questions ?? undefined} />
         </Dialog>
     </>
 }
@@ -81,7 +91,86 @@ const MapRequriements = (requirements: IRoleRequirements[]) => (requirement: IRo
         <Typography style={{ fontSize: '18px', letterSpacing: '1px' }}>{requirement.label}</Typography>
     </Box >
 )
+const RecrutingForm = ({ role, questions, }: { role: string, questions?: string[] }) => {
 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [experience, setExperience] = useState('');
+    const [time, setTime] = useState('');
+    const [questionsValue, setQuestions] = useState({});
+
+    const handleChange = (e: any) => {
+        const value = e.target.value;
+        const field = e.target.name;
+        const questionId = e.target.id;
+
+        switch (field) {
+            case 'first_name':
+                setFirstName(value);
+                break;
+            case 'last_name':
+                setLastName(value);
+                break;
+            case 'emailField':
+                setEmail(value);
+                break;
+            case 'expField':
+                setExperience(value);
+                break;
+            case 'timeField':
+                setTime(value);
+                break;
+            case 'question':
+                setQuestions(prevState => ({
+                    ...prevState,
+                    [questionId]: value
+                }))
+                break;
+        }
+    }
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        console.log('submit');
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <Typography variant="h3" style={{ fontSize: '16px', textTransform: 'uppercase', opacity: '0.4', letterSpacing: '1px', marginBottom: '5px' }}> {role}</Typography>
+            <Typography variant="h2" style={{ fontFamily: "'PT Mono', monospace", marginBottom: '40px', fontSize: '32px' }}>application form</Typography>
+            <Typography style={{ marginBottom: '35px', opacity: '0.7', width: '70%' }}>Laborum commodo anim incididunt dolor eu quis deserunt. Dolor est voluptate mollit non ut commodo. Consectetur veniam incididunt pariatur enim non non mollit eu velit qui do. Elit labore eiusmod ea eu ex irure anim commodo irure ipsum. Culpa eu sit officia veniam Lorem labore pariatur aliqua enim fugiat culpa id. Dolore mollit veniam nulla velit consectetur consequat duis cupidatat voluptate consectetur. Excepteur duis est ea exercitation sunt officia cillum pariatur sit aute qui excepteur.</Typography>
+            <Box display='flex' flexDirection='column' style={{ marginBottom: '25px' }} >
+                <TextField autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Name" name='first_name' value={firstName} onChange={handleChange} />
+                <TextField autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Surname" name='last_name' value={lastName} onChange={handleChange} />
+                <TextField autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Email" name='emailField' value={email} onChange={handleChange} />
+                <TextField autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Years of commercial and non-commercial experience" name='expField' value={experience} onChange={handleChange} />
+                <TextField autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Time weekly to spend on contributions" name='timeField' value={time} onChange={handleChange} />
+            </Box>
+            {questions &&
+                questions.map((question, index) => (
+                    <QuestionDiv question={question} index={index} handleChange={handleChange} questionsValue={questionsValue} />
+                ))
+            }
+            <DialogActions style={{ padding: '0', justifyContent: 'center', marginTop: '50px' }}>
+                <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" size="large" type='submit'>Send application</Button>
+            </DialogActions>
+        </form>
+
+    )
+}
+
+const QuestionDiv = ({ question, index, questionsValue, handleChange }: { question: string, index: number, questionsValue: Record<string, string>, handleChange: (e: any) => void }) => {
+    const questionNr = index + 1;
+
+    return (
+        <Box style={{ marginBottom: '30px' }}>
+            <Typography variant='h5' style={{ fontSize: '17px', marginBottom: '5px' }}>Question {questionNr}</Typography>
+            <Typography style={{ marginBottom: '10px', opacity: '0.7' }}>{question}</Typography>
+            <TextField name='question' multiline variant="filled" value={questionsValue[`question${questionNr}`]} id={`question${questionNr}`} onChange={handleChange} style={{ backgroundColor: '#000', borderRadius: '4px', width: '100%', }} />
+        </Box>
+    )
+}
 // Creates a hook for generating classnames.
 const useStyles = makeStyles(styles);
 
