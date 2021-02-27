@@ -13,6 +13,7 @@ import { useForm } from "utils/useForm";
 // Component scoped imports.
 import styles from "./styles";
 import translations from "./trans";
+import { useEmail } from "./useEmail";
 
 /**
  * Career role component.
@@ -64,19 +65,19 @@ const CareerRole = (props: CareerRoleProps) => {
                 </DialogActions>
             </Box>
             {props.role.requirements && <Box>
-                <Typography style={{ marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '2px' }}>Stack</Typography>
+                <Typography style={{ marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '2px' }}>{translated.stack}</Typography>
                 <Box style={{ height: '2px', background: '#fff', opacity: '0.1', marginBottom: '23px' }}></Box>
                 <Box style={{ display: 'flex', flexWrap: 'wrap' }}>
                     {props.role.requirements.map(MapRequriements(props.role.requirements))}
                 </Box>
             </Box>}
-            <Typography style={{ marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '2px' }}>Description</Typography>
+            <Typography style={{ marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '2px' }}>{translated.description}</Typography>
             <Box style={{ height: '2px', background: '#fff', opacity: '0.1', marginBottom: '10px' }}></Box>
             <DialogContent style={{ padding: '0' }}>
                 <Typography style={{ opacity: '0.6', }}>{props.role.description}</Typography>
             </DialogContent>
             <DialogActions style={{ padding: '0', justifyContent: 'center', marginTop: '30px' }}>
-                <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" onClick={handleOpenForm}>apply</Button>
+                <Button color="secondary" variant="contained" onClick={handleOpenForm}>{translated.apply}</Button>
             </DialogActions>
         </Dialog>
         <Dialog scroll="body" open={openForm} onClose={handleCloseForm} PaperProps={{ style: { width: '70vw', padding: '50px' } }} maxWidth='xl' >
@@ -94,14 +95,11 @@ const MapRequriements = (requirements: IRoleRequirements[]) => (requirement: IRo
 )
 
 const RecrutingForm = ({ role, questions, handleCloseForm }: { role: string, questions?: string[], handleCloseForm: () => void }) => {
-
+    const translated = useLittera(translations);
     const { subscribe, onSubmit, reset, errors } = useForm();
+    const dispatchEmail = useEmail();
+    const [emailSuccess, setEmailSuccess] = useState(false);
 
-    // const [firstName, setFirstName] = useState('');
-    // const [lastName, setLastName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [experience, setExperience] = useState('');
-    // const [time, setTime] = useState('');
     const [questionsValue, setQuestions] = useState({});
     const changeQuestion = (id: string, value: any) => {
         setQuestions(prevState => ({
@@ -110,15 +108,32 @@ const RecrutingForm = ({ role, questions, handleCloseForm }: { role: string, que
         }))
     }
 
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault();
-    //     console.log('submit');
-    // }
-
-    const handleSubmit2 = (data: any) => {
-        console.log("Input", data);
-
+    const handleSubmit2 = (data: { [key: string]: any }) => {
+        dispatchEmail({ ...data, role, questions: questionsValue })
+            .then(response => response.json())
+            .then(response => {
+                console.log("📧 Email request =>", response);
+                reset();
+                setEmailSuccess(true);
+            })
+            .catch(console.error);
     }
+
+    if (emailSuccess)
+        return <>
+            <Box justifyContent="center" alignItems="center" flexDirection="column">
+                <Box style={{ textAlign: "center" }} justifyContent="center" alignItems="center">
+                    <Icon style={{ color: "#9e1", fontSize: "72px", textAlign: "center" }}>check</Icon>
+                </Box>
+                <Box style={{ textAlign: "center" }} justifyContent="center" alignItems="center">
+                    <Typography variant="h2" style={{ fontFamily: "'PT Mono', monospace", marginTop: "30px", fontSize: '32px' }}>{translated.submitted}</Typography>
+                    <Typography style={{ fontFamily: "'PT Mono', monospace", marginBottom: '30px' }}>{translated.thanks}</Typography>
+                </Box>
+            </Box>
+            <DialogActions style={{ padding: '0', justifyContent: 'center', marginTop: '40px' }}>
+                <Button variant="text" size="large" onClick={handleCloseForm}>{translated.done}</Button>
+            </DialogActions>
+        </>
 
     return (
         <>
@@ -127,7 +142,7 @@ const RecrutingForm = ({ role, questions, handleCloseForm }: { role: string, que
                 <Box display='flex' justifyContent='space-between' marginBottom='25px'>
                     <Box style={{ width: '80%', }}>
                         <Typography variant="h3" style={{ fontSize: '16px', textTransform: 'uppercase', opacity: '0.4', letterSpacing: '1px', marginBottom: '5px' }}> {role}</Typography>
-                        <Typography variant="h2" style={{ fontFamily: "'PT Mono', monospace", marginBottom: '30px', fontSize: '32px' }}>Application form</Typography>
+                        <Typography variant="h2" style={{ fontFamily: "'PT Mono', monospace", marginBottom: '30px', fontSize: '32px' }}>{translated.applicationForm}</Typography>
                         <Typography style={{ opacity: '0.7' }}>Laborum commodo anim incididunt dolor eu quis deserunt. Dolor est voluptate mollit non ut commodo. Consectetur veniam incididunt pariatur enim non non mollit eu velit qui do. Elit labore eiusmod ea eu ex irure anim commodo irure ipsum. Culpa eu sit officia veniam Lorem labore pariatur aliqua enim fugiat culpa id. Dolore mollit veniam nulla velit consectetur consequat duis cupidatat voluptate consectetur. Excepteur duis est ea exercitation sunt officia cillum pariatur sit aute qui excepteur.</Typography>
                     </Box>
                     <Box style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -135,11 +150,11 @@ const RecrutingForm = ({ role, questions, handleCloseForm }: { role: string, que
                     </Box>
                 </Box>
                 <Box display='flex' flexDirection='column' style={{ marginBottom: '15px' }} >
-                    <TextField inputRef={subscribe} required name="first_name" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label="Name" />
-                    <TextField inputRef={subscribe} name="last_name" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label="Surname" />
-                    <TextField inputRef={subscribe} required name="email" type="email" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label="Email" />
-                    <TextField inputRef={subscribe} required name="experience" type="number" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label="Years of commercial and non-commercial experience" />
-                    <TextField inputRef={subscribe} required name="time_available" type="string" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label="Time weekly to spend on contributions" />
+                    <TextField inputRef={subscribe} required name="first_name" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label={translated.first_name} />
+                    <TextField inputRef={subscribe} name="last_name" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label={translated.last_name} />
+                    <TextField inputRef={subscribe} required name="email" type="email" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label={translated.email} />
+                    <TextField inputRef={subscribe} required name="experience" type="number" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label={translated.experience} />
+                    <TextField inputRef={subscribe} required name="time_available" type="string" variant="filled" autoComplete="off" style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} label={translated.time_available} />
 
                 </Box>
                 {questions &&
@@ -148,38 +163,10 @@ const RecrutingForm = ({ role, questions, handleCloseForm }: { role: string, que
                     ))
                 }
                 <DialogActions style={{ padding: '0', justifyContent: 'center', marginTop: '40px' }}>
-                    <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" size="large" type='submit'>Send application</Button>
+                    <Button variant="text" size="large" type='button'>{translated.abort}</Button>
+                    <Button variant="contained" color="secondary" size="large" type='submit'>{translated.submit}</Button>
                 </DialogActions>
             </form>
-
-
-            {/*  <form onSubmit={handleSubmit}>
-                <Box display='flex' justifyContent='space-between' marginBottom='25px'>
-                    <Box style={{ width: '80%', }}>
-                        <Typography variant="h3" style={{ fontSize: '16px', textTransform: 'uppercase', opacity: '0.4', letterSpacing: '1px', marginBottom: '5px' }}> {role}</Typography>
-                        <Typography variant="h2" style={{ fontFamily: "'PT Mono', monospace", marginBottom: '30px', fontSize: '32px' }}>application form</Typography>
-                        <Typography style={{ opacity: '0.7' }}>Laborum commodo anim incididunt dolor eu quis deserunt. Dolor est voluptate mollit non ut commodo. Consectetur veniam incididunt pariatur enim non non mollit eu velit qui do. Elit labore eiusmod ea eu ex irure anim commodo irure ipsum. Culpa eu sit officia veniam Lorem labore pariatur aliqua enim fugiat culpa id. Dolore mollit veniam nulla velit consectetur consequat duis cupidatat voluptate consectetur. Excepteur duis est ea exercitation sunt officia cillum pariatur sit aute qui excepteur.</Typography>
-                    </Box>
-                    <Box style={{ display: 'flex', alignItems: 'flex-start' }}>
-                        <IconButton color="primary" onClick={handleCloseForm} ><Icon color="primary">close</Icon></IconButton>
-                    </Box>
-                </Box>
-                <Box display='flex' flexDirection='column' style={{ marginBottom: '15px' }} >
-                    <TextField required autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Name" name='first_name' value={firstName} onChange={handleChange} />
-                    <TextField required autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Surname" name='last_name' value={lastName} onChange={handleChange} />
-                    <TextField required autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Email" name='emailField' value={email} onChange={handleChange} />
-                    <TextField required autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Years of commercial and non-commercial experience" name='expField' value={experience} onChange={handleChange} />
-                    <TextField required autoComplete='off' style={{ marginBottom: '10px', backgroundColor: '#000', borderRadius: '4px' }} variant="filled" label="Time weekly to spend on contributions" name='timeField' value={time} onChange={handleChange} />
-                </Box>
-                {questions &&
-                    questions.map((question, index) => (
-                        <QuestionDiv question={question} index={index} handleChange={handleChange} questionsValue={questionsValue} />
-                    ))
-                }
-                <DialogActions style={{ padding: '0', justifyContent: 'center', marginTop: '40px' }}>
-                    <Button style={{ backgroundColor: '#2196f3', color: '#fff' }} variant="contained" size="large" type='submit'>Send application</Button>
-                </DialogActions>
-            </form> */}
         </>
 
     )
@@ -210,3 +197,4 @@ type CareerRoleProps = {
 export default CareerRole;
 
 const stripHash = (val: string) => val.split("#")[1];
+

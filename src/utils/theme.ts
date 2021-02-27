@@ -8,6 +8,10 @@ export const LIGHT_THEME = createMuiTheme({
             main: "#FFF",
             contrastText: "#000"
         },
+        secondary: {
+            main: "#2196f3",
+            contrastText: "#FFF"
+        },
         background: {
             default: "#000",
             paper: "#212121"
