@@ -1,9 +1,9 @@
-name: Build
-on: [pull_request]
+name: 🔨 Build
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
@@ -19,14 +19,3 @@ jobs:
           yarn install
           yarn test
           yarn build
-      - name: Deploy 🚀
-        uses: afc163/surge-preview@v1
-        id: preview_step
-        with:
-          surge_token: ${{ secrets.SURGE_TOKEN }}
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          dist: build
-          teardown: 'true'
-          failOnError: true
-      - name: Get the preview_url
-        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
